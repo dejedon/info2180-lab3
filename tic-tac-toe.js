@@ -20,7 +20,27 @@ window.onload = function(){
         [2, 4, 6]
     ];
 
-
     for (let z=0; z<=8; z++){
         e[z].setAttribute("class", "square");
     }
+
+    e.forEach( (element, index) => {
+        element.addEventListener('click', () => user(element, index));
+        element.addEventListener('mouseover', function(){
+            element.classList.add('hover');
+        });
+        element.addEventListener('mouseout', function(){
+            element.classList.remove('hover');
+        });
+    });
+    
+    button.addEventListener('click', ()=>{
+        poslst=['', '', '', '', '', '', '', '', ''];
+        status.innerHTML= 'Move your mouse over a square and click to play an X or an O.'
+        status.classList.remove('you-won');
+        e.forEach(element =>{
+            element.innerText ='';
+            element.classList.remove('X');
+            element.classList.remove('O');
+        });
+    });

@@ -44,3 +44,19 @@ window.onload = function(){
             element.classList.remove('O');
         });
     });
+
+    function verifywin(){
+        for(let w=0; w<=7; w++){
+            const win = wincrit[w];
+    
+            const pos1= poslst[win[0]];
+            const pos2 = poslst[win[1]];
+            const pos3 = poslst[win[2]];
+            if (pos1 === ''|| pos2 === ''|| pos3===''){
+                continue;
+            }  
+            if (pos1=== pos2 && pos2 === pos3){
+                status.innerHTML= 'Congratulations! ' + pos1 +' is the winner';                
+                status.classList.add('you-won');
+                break;
+            }  

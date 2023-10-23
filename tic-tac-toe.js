@@ -6,7 +6,7 @@ window.onload = function(){
     const button=document.getElementsByClassName("btn")[0];
 
     const e= board.querySelectorAll('div');
-    let play = 'X';
+    let player = 'O';
     let poslst=['', '', '', '', '', '', '', '', ''];
 
     const wincrit= [
@@ -24,6 +24,25 @@ window.onload = function(){
         e[z].setAttribute("class", "square");
     }
 
+    const user= (element,index) =>{
+        console.log(element.innerText)
+        if(element.innerText !== 'X' || element.innerText !== 'O'){
+            element.innerText= player;
+            element.classList.add(player);
+            poslst[index]=player;
+            console.log(poslst);
+            checkwin();
+            if(player === 'X'){
+                player='O';
+            }
+            else
+            {
+                player='X';
+            }
+        }
+
+    }
+    
     e.forEach( (element, index) => {
         element.addEventListener('click', () => user(element, index));
         element.addEventListener('mouseover', function(){
@@ -33,6 +52,7 @@ window.onload = function(){
             element.classList.remove('hover');
         });
     });
+   
     
     button.addEventListener('click', ()=>{
         poslst=['', '', '', '', '', '', '', '', ''];
@@ -45,7 +65,7 @@ window.onload = function(){
         });
     });
 
-    function verifywin(){
+    function checkwin(){
         for(let w=0; w<=7; w++){
             const win = wincrit[w];
     
@@ -60,3 +80,6 @@ window.onload = function(){
                 status.classList.add('you-won');
                 break;
             }  
+        }
+    }
+}
